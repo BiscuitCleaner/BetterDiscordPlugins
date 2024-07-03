@@ -8,18 +8,21 @@
 
 
 const BD = new BdApi("AutoSilentMessage");
-const { Filters, getModule } = BD.Webpack;
+const { getByKeys } = BD.Webpack;
 
-const MessageActionsFilter = Filters.byProps("jumpToMessage", "_sendMessage");
-const MessageActions = getModule(m => MessageActionsFilter(m));
+const MessageActions = getByKeys("sendMessage");
 
-module.exports = meta => ({
+module.exports = class AutoSilentMessage {
+    constructor(meta) {
+
+    }
+
     start() {
         BD.Patcher.before(MessageActions, "sendMessage", (_, [, msg]) => {
             msg.content = '@silent ' + msg.content
-        });
-    },
+        })
+    }
     stop() {
         BD.Patcher.unpatchAll();
     }
-});
+};
