@@ -2,7 +2,7 @@
  * @name AutoSilentMessage
  * @author glorytotheprc
  * @authorId 869418754348580885
- * @version 1.0.0
+ * @version 1.0.1
  * @description Make every message silent.
  */
 
